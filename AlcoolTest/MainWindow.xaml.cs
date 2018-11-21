@@ -12,7 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
 namespace AlcoolTest
 {
     /// <summary>
@@ -20,9 +19,20 @@ namespace AlcoolTest
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        private List<Alcool> m_alcool = new List<Alcool>();
+
         public MainWindow()
         {
             InitializeComponent();
+            add_img();
+        }
+
+        public void add_img()
+        {
+            ImageBrush imgBrush = new ImageBrush();
+            imgBrush.ImageSource = new BitmapImage(new Uri(@"images/bg.jpg", UriKind.Relative));
+            Calcul.Background = imgBrush;
         }
     }
 }
