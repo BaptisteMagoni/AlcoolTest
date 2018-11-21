@@ -6,13 +6,13 @@
         xmlns:local="clr-namespace:AlcoolTest"
         mc:Ignorable="d"
         Title="MainWindow" Height="425.574" Width="759.632">
-    <Grid>
+    <Grid Name="grid_all">
         <TabControl HorizontalAlignment="Left" Height="385" Margin="0,10,0,0" VerticalAlignment="Top" Width="752" Name="tabcontrol">
             <TabItem Header="Calculer le taux d'alcool" Name="Calcul">
                 
             </TabItem>
             <TabItem Header="TabItem">
-                <Grid Background="#FFE5E5E5"/>
+                
             </TabItem>
         </TabControl>
 

@@ -21,18 +21,34 @@ namespace AlcoolTest
     {
 
         private List<Alcool> m_alcool = new List<Alcool>();
+        private Grid m_grid;
 
         public MainWindow()
         {
             InitializeComponent();
-            add_img();
+            m_grid = new Grid();
+            Calcul.Content = m_grid;
+            init_component();
         }
 
-        public void add_img()
+        public void init_component()
+        {
+            m_alcool.Add(new Alcool("Bièrre", 25, 4.5, "images/bg.jpg"));
+            foreach (Alcool alcool in m_alcool)
+                add_alcool(alcool.get_path());
+        }
+
+        public void add_tabcontent()
+        {
+            m_grid.Children.Add()
+        }
+
+        public void add_alcool(string image_path)
         {
             ImageBrush imgBrush = new ImageBrush();
-            imgBrush.ImageSource = new BitmapImage(new Uri(@"images/bg.jpg", UriKind.Relative));
+            imgBrush.ImageSource = new BitmapImage(new Uri(@image_path, UriKind.Relative));
             Calcul.Background = imgBrush;
+            m_grid.Children.Add(imgBrush);
         }
     }
 }
