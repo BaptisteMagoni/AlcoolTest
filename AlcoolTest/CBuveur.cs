@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace /* METTEZ ICI VOTRE NAMESPACE !!!!!!!!!!!!! */
+namespace AlcoolTest
 {
     class CBuveur
     {

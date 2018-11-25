@@ -5,16 +5,61 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AlcoolTest"
         mc:Ignorable="d"
-        Title="MainWindow" Height="425.574" Width="759.632">
-    <Grid Name="grid_all">
-        <TabControl HorizontalAlignment="Left" Height="385" Margin="0,10,0,0" VerticalAlignment="Top" Width="752" Name="tabcontrol">
-            <TabItem Header="Calculer le taux d'alcool" Name="Calcul">
-                
-            </TabItem>
-            <TabItem Header="TabItem">
-                
-            </TabItem>
-        </TabControl>
+        
+        Title="AlcoolTest" Height="842.36" Width="1083.276" ResizeMode="NoResize">
+    <Window.Resources>
+        <Style x:Key="Button_style" TargetType="Button">
+            <Setter Property="Width" Value="56"/>
+            <Setter Property="Height" Value="32"/>
+        </Style>
+        <Style x:Key="Image_style" TargetType="Image">
+            <Setter Property="Width" Value="130"/>
+            <Setter Property="Height" Value="160"/>
+        </Style>
+        <Style x:Key="Label_nb_style" TargetType="Label">
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Foreground" Value="Blue"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="198" Margin="10,10,0,0" Stroke="Black" VerticalAlignment="Top" Width="1044"/>
+        <Label Content="Information utilisateur" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="26" Margin="155,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" TextChanged="TextBox_TextChanged"/>
+        <Label Content="Nom :" HorizontalAlignment="Left" Margin="96,41,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="155,87,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="218" TextChanged="TextBox_TextChanged_1"/>
+        <Label Content="Prénom :" HorizontalAlignment="Left" Margin="81,87,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.079,0.692" Height="23"/>
+        <ComboBox HorizontalAlignment="Left" Margin="779,58,0,0" VerticalAlignment="Top" Width="178" Height="26" Name="comboSexe"  SelectionChanged="ComboBox_SelectionChanged"/>
+        <CheckBox Content="Je suis jeune conducteur" HorizontalAlignment="Left" Margin="779,127,0,0" VerticalAlignment="Top"/>
+        <CheckBox Content="J'accepte d'être dans la base de donnée" HorizontalAlignment="Left" Margin="461,164,0,0" VerticalAlignment="Top"/>
 
+
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="578" Margin="10,213,0,0" Stroke="Black" VerticalAlignment="Top" Width="1044"/>
+        <Label Content="Calculer le taux d'alcoolémie" HorizontalAlignment="Left" Margin="10,213,0,0" VerticalAlignment="Top"/>
+
+        <Image Style="{StaticResource Image_style}" HorizontalAlignment="Left" Margin="81,260,0,0" VerticalAlignment="Top" Name="Bierre" Source="C:\Users\Baptiste Magoni\Desktop\AlcoolTest\AlcoolTest\images\biere.jpg" Stretch="Fill"/>
+        <Button Style="{StaticResource Button_style}" Content="+" HorizontalAlignment="Left" Margin="81,425,0,0" VerticalAlignment="Top" Name="button_biere_plus" Click="gestion_incrementation"/>
+        <Button Style="{StaticResource Button_style}" Content="-" HorizontalAlignment="Left" Margin="155,425,0,0" VerticalAlignment="Top" Name="button_biere_moin" Click="gestion_incrementation"/>
+        <Label Style="{StaticResource Label_nb_style}" Name="label_biere" Content="0" HorizontalAlignment="Left" Margin="181,390,0,0" VerticalAlignment="Top" Width="30"/>
+
+        <Image Style="{StaticResource Image_style}" HorizontalAlignment="Left" Margin="336,260,0,0" VerticalAlignment="Top" Name="Vin" Source="C:\Users\Baptiste Magoni\Desktop\AlcoolTest\AlcoolTest\images\vin.jpg" Stretch="Fill"/>
+        <Button Style="{StaticResource Button_style}" Content="+" HorizontalAlignment="Left" Margin="336,425,0,0" VerticalAlignment="Top" Name="button_vin_plus" Click="gestion_incrementation"/>
+        <Button Style="{StaticResource Button_style}" Content="-" HorizontalAlignment="Left" Margin="410,425,0,0" VerticalAlignment="Top" Name="button_vin_moin" Click="gestion_incrementation"/>
+        <Label Style="{StaticResource Label_nb_style}" Name="label_vin" Content="0" HorizontalAlignment="Left" Margin="431,390,0,0" VerticalAlignment="Top" Width="35"/>
+
+
+        <Image Style="{StaticResource Image_style}" HorizontalAlignment="Left" Margin="596,260,0,0" VerticalAlignment="Top" Name="Fort" Source="C:\Users\Baptiste Magoni\Desktop\AlcoolTest\AlcoolTest\images\fort.jpg" Stretch="Fill"/>
+        <Button Style="{StaticResource Button_style}" Content="+" HorizontalAlignment="Left" Margin="596,425,0,0" VerticalAlignment="Top" Name="button_fort_plus" Click="gestion_incrementation"/>
+        <Button Style="{StaticResource Button_style}" Content="-" HorizontalAlignment="Left" Margin="670,425,0,0" VerticalAlignment="Top" Name="button_fort_moin" Click="gestion_incrementation"/>
+        <Label Style="{StaticResource Label_nb_style}" Name="label_fort" Content="0" HorizontalAlignment="Left" Margin="696,390,0,0" VerticalAlignment="Top" Width="30"/>
+
+        <Image Style="{StaticResource Image_style}" HorizontalAlignment="Left" Margin="853,260,0,0" VerticalAlignment="Top" Name="Shooter" Source="C:\Users\Baptiste Magoni\Desktop\AlcoolTest\AlcoolTest\images\shooter.jpg" Stretch="Fill"/>
+        <Button Style="{StaticResource Button_style}" Content="+" HorizontalAlignment="Left" Margin="853,425,0,0" VerticalAlignment="Top" Name="button_shooter_plus" Click="gestion_incrementation"/>
+        <Button Style="{StaticResource Button_style}" Content="-" HorizontalAlignment="Left" Margin="927,425,0,0" VerticalAlignment="Top" Name="button_shooter_moin" Click="gestion_incrementation"/>
+        <Label Style="{StaticResource Label_nb_style}" Name="label_shooter" Content="0" HorizontalAlignment="Left" Margin="955,390,0,0" VerticalAlignment="Top" Width="28"/>
+
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="155,127,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218"/>
+        <Label Content="Votre poids :" HorizontalAlignment="Left" Margin="61,124,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.053,0" Height="37"/>
+        <Label Content="" HorizontalAlignment="Left" Margin="447,556,0,0" VerticalAlignment="Top" Name="label_lol"/>
+        <Button Content="Calculer" HorizontalAlignment="Left" Margin="496,701,0,0" VerticalAlignment="Top" Width="75"/>
     </Grid>
 </Window>
