@@ -55,35 +55,29 @@
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="198" Margin="10,10,0,0" Stroke="Black" VerticalAlignment="Top" Width="1044"/>
         <Label Content="Information utilisateur" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
 
-        <TextBox Style="{StaticResource Textbox_style}" HorizontalAlignment="Left" Margin="155,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top"  TextChanged="TextBox_TextChanged" Name="text_nom"/>
-        <Label Content="Nom :" HorizontalAlignment="Left" Margin="96,41,0,0" VerticalAlignment="Top"/>
+        <ComboBox HorizontalAlignment="Left" Margin="157,95,0,0" VerticalAlignment="Top" Width="218" Height="26" Name="comboSexe"/>
+        <Label Content="Sexe :" HorizontalAlignment="Left" Margin="97,95,0,0" VerticalAlignment="Top"/>
 
-        <TextBox Style="{StaticResource Textbox_style}" HorizontalAlignment="Left" Margin="155,87,0,0" TextWrapping="Wrap" VerticalAlignment="Top" TextChanged="TextBox_TextChanged_1" Name="text_prenom"/>
-        <Label Content="Prénom :" HorizontalAlignment="Left" Margin="81,85,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.079,0.692"/>
+        <TextBox Style="{StaticResource Textbox_style}" HorizontalAlignment="Left" Margin="157,61,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Name="text_poids"/>
+        <Label Content="Votre poids :" HorizontalAlignment="Left" Margin="63,58,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.053,0" Height="37"/>
 
-        <ComboBox HorizontalAlignment="Left" Margin="779,41,0,0" VerticalAlignment="Top" Width="178" Height="26" Name="comboSexe" SelectionChanged="ComboBox_SelectionChanged"/>
-        <Label Content="Sexe :" HorizontalAlignment="Left" Margin="736,41,0,0" VerticalAlignment="Top"/>
+        <Label Style="{StaticResource Label_heure}" Content="Heure du premier verre ?" HorizontalAlignment="Left" Margin="679,61,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.395,0.385" Height="28"/>
+        <ComboBox Style="{StaticResource ComboSize}" HorizontalAlignment="Left" Margin="821,61,0,0" VerticalAlignment="Top" Name="premier_heure" Height="21"/>
+        <Label Style="{StaticResource Label_heure}" Content="h" HorizontalAlignment="Left" Margin="881,58,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.263,0.115"/>
+        <ComboBox Style="{StaticResource ComboSize}" HorizontalAlignment="Left" Margin="903,61,0,0" VerticalAlignment="Top" Name="premier_minute" Height="21" Width="54"/>
+        <Label Style="{StaticResource Label_heure}" Content="Heure du dernier verre ?" HorizontalAlignment="Left" Margin="682,103,0,0" VerticalAlignment="Top"/>
+        <ComboBox Style="{StaticResource ComboSize}" HorizontalAlignment="Left" Margin="821,106,0,0" VerticalAlignment="Top" Name="dernier_heure" Height="19"/>
+        <Label Style="{StaticResource Label_heure}" Content="h" HorizontalAlignment="Left" Margin="881,103,0,0" VerticalAlignment="Top"/>
+        <ComboBox Style="{StaticResource ComboSize}" HorizontalAlignment="Left" Margin="902,105,0,0" VerticalAlignment="Top" Name="dernier_minute" Height="20"/>
 
-        <TextBox Style="{StaticResource Textbox_style}" HorizontalAlignment="Left" Margin="155,127,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Name="text_poids"/>
-        <Label Content="Votre poids :" HorizontalAlignment="Left" Margin="61,124,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.053,0" Height="37"/>
-
-        <Label Style="{StaticResource Label_heure}" Content="Heure du premier verre ?" HorizontalAlignment="Left" Margin="679,87,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.395,0.385" Height="28"/>
-        <ComboBox Style="{StaticResource ComboSize}" HorizontalAlignment="Left" Margin="821,87,0,0" VerticalAlignment="Top" Name="premier_heure" Height="21"/>
-        <Label Style="{StaticResource Label_heure}" Content="h" HorizontalAlignment="Left" Margin="881,84,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.263,0.115"/>
-        <ComboBox Style="{StaticResource ComboSize}" HorizontalAlignment="Left" Margin="903,87,0,0" VerticalAlignment="Top" SelectionChanged="ComboBox_SelectionChanged_1" Name="premier_minute" Height="21" Width="54"/>
-        <Label Style="{StaticResource Label_heure}" Content="Heure du dernier verre ?" HorizontalAlignment="Left" Margin="682,113,0,0" VerticalAlignment="Top"/>
-        <ComboBox Style="{StaticResource ComboSize}" HorizontalAlignment="Left" Margin="821,116,0,0" VerticalAlignment="Top" Name="dernier_heure" Height="19"/>
-        <Label Style="{StaticResource Label_heure}" Content="h" HorizontalAlignment="Left" Margin="881,113,0,0" VerticalAlignment="Top"/>
-        <ComboBox Style="{StaticResource ComboSize}" HorizontalAlignment="Left" Margin="902,115,0,0" VerticalAlignment="Top" Name="dernier_minute" Height="20"/>
-
-        <CheckBox Content="Je suis jeune conducteur" HorizontalAlignment="Left" Margin="808,149,0,0" VerticalAlignment="Top" Name="jeune_check"/>
-        <CheckBox Content="J'accepte d'être dans la base de donnée" HorizontalAlignment="Left" Margin="451,177,0,0" VerticalAlignment="Top" Name="bdd_check"/>
+        <CheckBox Content="Je suis jeune conducteur" HorizontalAlignment="Left" Margin="191,148,0,0" VerticalAlignment="Top" Name="jeune_check" RenderTransformOrigin="0.215,0.667"/>
+        <CheckBox Content="J'accepte d'être dans la base de donnée" HorizontalAlignment="Left" Margin="414,174,0,0" VerticalAlignment="Top" Name="bdd_check"/>
 
         <Label Style="{StaticResource Champs_obligatoire}"  Content="* Champs obligatoire" HorizontalAlignment="Left" Margin="10,186,0,0" VerticalAlignment="Top"/>
-        <Label Style="{StaticResource Champs_obligatoire}" Content="*" HorizontalAlignment="Left" Margin="373,127,0,0" VerticalAlignment="Top" Height="23"/>
-        <Label Style="{StaticResource Champs_obligatoire}" Content="*" HorizontalAlignment="Left" Margin="957,41,0,0" VerticalAlignment="Top" Height="26"/>
-        <Label Style="{StaticResource Champs_obligatoire}" Content="*" HorizontalAlignment="Left" Margin="956,87,0,0" VerticalAlignment="Top" Height="21"/>
-        <Label Style="{StaticResource Champs_obligatoire}" Content="*" HorizontalAlignment="Left" Margin="956,115,0,0" VerticalAlignment="Top" Height="19"/>
+        <Label Style="{StaticResource Champs_obligatoire}" Content="*" HorizontalAlignment="Left" Margin="375,61,0,0" VerticalAlignment="Top" Height="23"/>
+        <Label Style="{StaticResource Champs_obligatoire}" Content="*" HorizontalAlignment="Left" Margin="375,95,0,0" VerticalAlignment="Top" Height="26"/>
+        <Label Style="{StaticResource Champs_obligatoire}" Content="*" HorizontalAlignment="Left" Margin="956,61,0,0" VerticalAlignment="Top" Height="21"/>
+        <Label Style="{StaticResource Champs_obligatoire}" Content="*" HorizontalAlignment="Left" Margin="956,105,0,0" VerticalAlignment="Top" Height="19"/>
 
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="541" Margin="10,213,0,0" Stroke="Black" VerticalAlignment="Top" Width="1044"/>
         <Label Content="Calculer le taux d'alcoolémie" HorizontalAlignment="Left" Margin="10,213,0,0" VerticalAlignment="Top"/>
@@ -123,5 +117,6 @@
         <Rectangle Fill="Green" HorizontalAlignment="Left" Height="26" Margin="10,769,0,0" Stroke="Black" VerticalAlignment="Top" Width="1044" Name="Content_Message"/>
         <Label Style="{StaticResource Label_error}" Name="Messagelog" Content="Aucune erreur pour l'instant" HorizontalAlignment="Left" Margin="10,769,0,0" VerticalAlignment="Top" Width="1044"/>
         <Button Style="{StaticResource Button_style}" Content="Remise à zéro" HorizontalAlignment="Left" Margin="20,716,0,0" VerticalAlignment="Top" Width="96" Click="reset_information"/>
+        <Button Style="{StaticResource Button_style}" Content="Voir statistique" HorizontalAlignment="Left" Margin="943,716,0,0" VerticalAlignment="Top" Width="96" Click="afficher_statistique"/>
     </Grid>
 </Window>

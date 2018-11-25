@@ -25,11 +25,13 @@ namespace AlcoolTest
         private string[] m_minute = { "00", "15", "30", "45" };
         private CBuveur m_buveur;
         private List<Alcool> m_alcool = new List<Alcool>();
+        private SqlConnection sql;
         private int nb_biere;
         private int nb_vin;
         private int nb_fort;
         private int nb_shot;
         private int nb_champagne;
+        private bool estDejaConnecter;
 
         public MainWindow()
         {
@@ -47,6 +49,7 @@ namespace AlcoolTest
             nb_fort = 0;
             nb_shot = 0;
             nb_champagne = 0;
+            estDejaConnecter = false;
         }
 
         private void init_comboBox()
@@ -190,6 +193,42 @@ namespace AlcoolTest
 
         }
 
+        private void calcul(object sender, RoutedEventArgs e)
+        {
+            if (!isEmpty())
+            {
+                bool isHomme;
+                if (comboSexe.Text.Equals("Homme")) isHomme = true;
+                else isHomme = false;
+                int ok_convert;
+                if (Int32.TryParse(text_poids.Text, out ok_convert))
+                {
+                    if(bdd_check.IsChecked == true)
+                    {
+                        if (!estDejaConnecter)
+                        {
+                            estDejaConnecter = true;
+                            sql = new SqlConnection("176.132.180.249", "bdd_alcooltest", "AlcoolTest", "alcool");
+                            sql.connexion();
+                        }
+                        
+                    }
+                    m_buveur = new CBuveur(isHomme, Int32.Parse(text_poids.Text));
+                    foreach(Alcool alc in m_alcool)
+                        m_buveur.MAJ_alcoolemie(get_qte_alcool(alc.get_nom()), alc.get_taux());
+                    if (bdd_check.IsChecked == true)
+                        sql.creerNouvelleUtilisateur(m_buveur.get_alcoolemie().ToString(".##"));
+                    setMessage("Votre taux d'alcoolémie est de " + m_buveur.get_alcoolemie().ToString(".##") + " g/l");
+                }
+                else
+                    setMessageError("Le poids saisi est éroné");
+            }
+            else
+            {
+                setMessageError("Vous avez oublié de remplir tous les champs dans la catégorie \"Information utilisateur\" !");
+            }
+        }
+
         private int get_qte_alcool(string alcool_name)
         {
             if (alcool_name.Equals("Biere"))
@@ -203,32 +242,6 @@ namespace AlcoolTest
             else if (alcool_name.Equals("Champagne"))
                 return (Int32.Parse(label_champagne.Content.ToString()) * 10);
             return 0;
-        }
-
-        private void calcul(object sender, RoutedEventArgs e)
-        {
-            if (!isEmpty())
-            {
-                bool isHomme;
-                if (comboSexe.Text.Equals("Homme"))
-                    isHomme = true;
-                else
-                    isHomme = false;
-                int ok_convert;
-                if (Int32.TryParse(text_poids.Text, out ok_convert))
-                {
-                    m_buveur = new CBuveur(isHomme, Int32.Parse(text_poids.Text));
-                    foreach(Alcool alc in m_alcool)
-                        m_buveur.MAJ_alcoolemie(get_qte_alcool(alc.get_nom()), alc.get_taux());
-                    setMessage("Votre taux d'alcoolémie est de " + m_buveur.get_alcoolemie().ToString(".##") + " g/l");
-                }
-                else
-                    setMessageError("Le poids saisi est éroné");
-            }
-            else
-            {
-                setMessageError("Vous avez oublié de remplir tous les champs dans la catégorie \"Information utilisateur\" !");
-            }
         }
 
         private void setMessageError(string message)
@@ -255,6 +268,16 @@ namespace AlcoolTest
                 return false;
         }
 
+        private void afficher_statistique(object sender, RoutedEventArgs e)
+        {
+            if(sql == null)
+            {
+                sql = new SqlConnection("176.132.180.249", "bdd_alcooltest", "AlcoolTest", "alcool");
+                sql.connexion();
+            }
+            sql.afficher_statistique();
+        }
+
         private void reset_information(object sender, RoutedEventArgs e)
         {
             m_buveur = null;
@@ -268,42 +291,12 @@ namespace AlcoolTest
             label_fort.Content = "0";
             label_shooter.Content = "0";
             label_champagne.Content = "0";
-            text_nom.Text = "";
             text_poids.Text = "";
-            text_prenom.Text = "";
             setMessage("Aucune erreur pour l'instant");
             init_comboBox();
             init_comboHeure();
-        }
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void TextBox_TextChanged_1(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void RadioButton_Checked(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void ComboBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
-        {
-
+            bdd_check.IsChecked = false;
+            sql = null ;
         }
     }
 }
