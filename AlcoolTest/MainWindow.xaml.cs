@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
+
 namespace AlcoolTest
 {
     /// <summary>
@@ -32,7 +34,7 @@ namespace AlcoolTest
         private int nb_shot;
         private int nb_champagne;
         private bool estDejaConnecter;
-
+        
         public MainWindow()
         {
             InitializeComponent();
@@ -270,7 +272,7 @@ namespace AlcoolTest
 
         private void afficher_statistique(object sender, RoutedEventArgs e)
         {
-            if(sql == null)
+            if (sql == null)
             {
                 sql = new SqlConnection("176.132.180.249", "bdd_alcooltest", "AlcoolTest", "alcool");
                 sql.connexion();
@@ -296,6 +298,9 @@ namespace AlcoolTest
             init_comboBox();
             init_comboHeure();
             bdd_check.IsChecked = false;
+            estDejaConnecter = false;
+            if(sql != null)
+                sql.disconnect();
             sql = null ;
         }
     }

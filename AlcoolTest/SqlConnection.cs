@@ -38,7 +38,7 @@ namespace AlcoolTest
             this.connection.Open();
         }
 
-        private void disconnect()
+        public void disconnect()
         {
             this.connection.Close();
         }
@@ -48,16 +48,14 @@ namespace AlcoolTest
             MySqlCommand cmd = this.connection.CreateCommand();
             cmd.CommandText = "INSERT INTO users(taux) VALUES (@taux)";
             cmd.Parameters.AddWithValue("@taux", taux);
-            cmd.ExecuteNonQuery();
+            cmd.BeginExecuteNonQuery();
         }
 
         private double calculer_pourcentage()
         {
             double taux_pourcentage = 0;
             foreach (double data in read_bdd())
-            {
                 taux_pourcentage += data;
-            }
 
             return taux_pourcentage / read_bdd().Count;
         }
@@ -89,7 +87,7 @@ namespace AlcoolTest
 
         public void afficher_statistique()
         {
-            MessageBox.Show("Le taux moyen est de " + calculer_pourcentage().ToString(".##") + " g/l \nNombre d'alcoolique ayant participer : " + calculer_nb_alcoolique().ToString());
+            MessageBox.Show("Le taux moyen est de " + calculer_pourcentage().ToString(".##") + " g/l\nNombre d'alcoolique ayant participer : " + calculer_nb_alcoolique().ToString());
         }
 
         public MySqlConnection getConnection()
