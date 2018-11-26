@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:AlcoolTest"
         mc:Ignorable="d"
         Background="Gray"
-        Title="AlcoolTest" Height="852.36" Width="1083.276" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="AlcoolTest" Height="865.36" Width="1083.276" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style x:Key="Textbox_style" TargetType="TextBox">
             <Setter Property="VerticalContentAlignment" Value="Center"/>
@@ -114,8 +114,8 @@
         <Label Style="{StaticResource Label_degres_style}" Content="10 cl à 12 °" HorizontalAlignment="Left" Margin="201,497,0,0" VerticalAlignment="Top"/>
 
         <Button Style="{StaticResource Button_style}" Content="Calculer" HorizontalAlignment="Left" Margin="510,716,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.839,0.312" Click="calcul"/>
-        <Rectangle Fill="Green" HorizontalAlignment="Left" Height="26" Margin="10,769,0,0" Stroke="Black" VerticalAlignment="Top" Width="1044" Name="Content_Message"/>
-        <Label Style="{StaticResource Label_error}" Name="Messagelog" Content="Aucune erreur pour l'instant" HorizontalAlignment="Left" Margin="10,769,0,0" VerticalAlignment="Top" Width="1044"/>
+        <Rectangle Fill="Green" HorizontalAlignment="Left" Height="34" Margin="10,769,0,0" Stroke="Black" VerticalAlignment="Top" Width="1044" Name="Content_Message"/>
+        <Label Style="{StaticResource Label_error}" Name="Messagelog" Content="Aucune erreur pour l'instant" HorizontalAlignment="Left" Margin="10,769,0,0" VerticalAlignment="Top" Width="1044" Height="34"/>
         <Button Style="{StaticResource Button_style}" Content="Remise à zéro" HorizontalAlignment="Left" Margin="20,716,0,0" VerticalAlignment="Top" Width="96" Click="reset_information"/>
         <Button Style="{StaticResource Button_style}" Content="Voir statistique" HorizontalAlignment="Left" Margin="943,716,0,0" VerticalAlignment="Top" Width="96" Click="afficher_statistique"/>
         <CheckBox Content="Voulez vous ajouter un nouvelle alcool" HorizontalAlignment="Left" Margin="821,219,0,0" VerticalAlignment="Top" Name="ajouter_nouvelle_alcool"/>

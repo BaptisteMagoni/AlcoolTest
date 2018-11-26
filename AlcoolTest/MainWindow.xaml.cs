@@ -220,7 +220,7 @@ namespace AlcoolTest
                         m_buveur.MAJ_alcoolemie(get_qte_alcool(alc.get_nom()), alc.get_taux());
                     if (bdd_check.IsChecked == true)
                         sql.creerNouvelleUtilisateur(m_buveur.get_alcoolemie().ToString(".##"));
-                    setMessage("Votre taux d'alcoolémie est de " + m_buveur.get_alcoolemie().ToString(".##") + " g/l");
+                    setMessage("Votre taux d'alcoolémie est de " + m_buveur.get_alcoolemie().ToString(".##") + " g/l. " + temps_Elimination_Alcool());
                 }
                 else
                     setMessageError("Le poids saisi est éroné");
@@ -278,6 +278,49 @@ namespace AlcoolTest
                 sql.connexion();
             }
             sql.afficher_statistique();
+        }
+
+        public string temps_Elimination_Alcool()
+        {
+            double alcool_a_eliminer = 0.0;
+            string minutes;
+            if (jeune_check.IsChecked == true)
+                alcool_a_eliminer = m_buveur.get_alcoolemie() - 0.2;
+            else if (jeune_check.IsChecked == false)
+                alcool_a_eliminer = m_buveur.get_alcoolemie() - 0.8;
+            double resultat = alcool_a_eliminer / 0.15;
+            double heure = (int)resultat;
+            
+            if ((resultat - (int)resultat) != 0)
+            {
+                double minutesDouble = (resultat - (int)resultat) * 60.0;
+                minutes = minutesDouble.ToString().Substring(0, 2);
+            }
+            else { minutes = "00"; }
+            if (minutes[1] == ',') 
+            {
+                minutes = "0" + minutes[0];
+            }
+            string temps_restant;
+            if (heure == 0)
+            {
+                if (Int32.Parse(minutes) < 10)
+                {
+                    minutes = Int32.Parse(minutes).ToString();
+                }
+                temps_restant = "Il vous reste " + minutes + " min a attendre pour pouvoir conduire";
+            }
+            else if (Int32.Parse(minutes) == 0)
+            {
+                temps_restant = "Il vous reste " + heure + "h a attendre pour pouvoir conduire";
+            }
+            else
+            {
+                temps_restant = "Il vous reste " + heure + "h" + minutes + "min a attendre pour pouvoir conduire";
+            }
+
+
+            return temps_restant;
         }
 
         private void reset_information(object sender, RoutedEventArgs e)
