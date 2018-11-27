@@ -211,7 +211,7 @@ namespace AlcoolTest
                         {
                             estDejaConnecter = true;
                             sql = new SqlConnection("176.132.180.249", "bdd_alcooltest", "AlcoolTest", "alcool");
-                            sql.connexion();
+                            int type_retour = sql.connexion();
                         }
                         
                     }
@@ -345,6 +345,22 @@ namespace AlcoolTest
             if(sql != null)
                 sql.disconnect();
             sql = null ;
+        }
+
+        private void ajout_alcool_Click(object sender, RoutedEventArgs e)
+        {
+            ajout_alcool_window ajout = new ajout_alcool_window();
+            ajout.ShowDialog();
+
+            list_box.Items.Add("Nom : " + ajout.getNom() + ", Quantité : " + ajout.getQte().ToString() + ", Taux : " + ajout.getTaux().ToString());
+
+        }
+
+
+
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }
