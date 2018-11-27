@@ -94,6 +94,7 @@ namespace AlcoolTest
             while (read.Read())
                 if(read.GetDouble("taux") > 0.5)
                     nb++;
+            read.Close();
             return nb;
         }
 

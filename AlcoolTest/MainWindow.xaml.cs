@@ -22,7 +22,7 @@ namespace AlcoolTest
     public partial class MainWindow : Window
     {
 
-        private string[] m_sexe = {"Homme","Femme"};
+        private string[] m_sexe = { "Homme", "Femme" };
         private string[] m_heure = { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" };
         private string[] m_minute = { "00", "15", "30", "45" };
         private CBuveur m_buveur;
@@ -34,7 +34,7 @@ namespace AlcoolTest
         private int nb_shot;
         private int nb_champagne;
         private bool estDejaConnecter;
-        
+
         public MainWindow()
         {
             InitializeComponent();
@@ -82,7 +82,7 @@ namespace AlcoolTest
                 dernier_heure.Items.Add(data_heure);
             }
 
-            foreach(string data_minute in m_minute)
+            foreach (string data_minute in m_minute)
             {
                 premier_minute.Items.Add(data_minute);
                 dernier_minute.Items.Add(data_minute);
@@ -90,7 +90,7 @@ namespace AlcoolTest
         }
 
         private void gestion_incrementation(object sender, RoutedEventArgs e)
-        {   
+        {
             String button_type = ((Button)sender).Name.ToString();
             if (button_type.Equals("button_biere_plus"))
             {
@@ -103,14 +103,14 @@ namespace AlcoolTest
             else if (button_type.Equals("button_biere_moin"))
             {
                 nb_biere--;
-                if(nb_biere >= 0)
+                if (nb_biere >= 0)
                 {
                     String nb = label_biere.Content.ToString();
                     label_biere.Content = nb.Replace(nb, nb_biere.ToString());
                     if (nb_biere == 0)
                         button_biere_moin.IsEnabled = false;
                 }
-                
+
             }
             else if (button_type.Equals("button_vin_plus"))
             {
@@ -190,7 +190,7 @@ namespace AlcoolTest
                     if (nb_champagne == 0)
                         button_champagne_moin.IsEnabled = false;
                 }
-                
+
             }
 
         }
@@ -205,7 +205,7 @@ namespace AlcoolTest
                 int ok_convert;
                 if (Int32.TryParse(text_poids.Text, out ok_convert))
                 {
-                    if(bdd_check.IsChecked == true)
+                    if (bdd_check.IsChecked == true)
                     {
                         if (!estDejaConnecter)
                         {
@@ -213,13 +213,14 @@ namespace AlcoolTest
                             sql = new SqlConnection("176.132.180.249", "bdd_alcooltest", "AlcoolTest", "alcool");
                             int type_retour = sql.connexion();
                         }
-                        
+
                     }
                     m_buveur = new CBuveur(isHomme, Int32.Parse(text_poids.Text));
-                    foreach(Alcool alc in m_alcool)
-                        m_buveur.MAJ_alcoolemie(get_qte_alcool(alc.get_nom()), alc.get_taux());
+                    foreach (Alcool alc in m_alcool)
+                        m_buveur.MAJ_alcoolemie(get_qte_alcool(alc.get_nom(), alc), alc.get_taux());
                     if (bdd_check.IsChecked == true)
                         sql.creerNouvelleUtilisateur(m_buveur.get_alcoolemie().ToString(".##"));
+
                     setMessage("Votre taux d'alcoolémie est de " + m_buveur.get_alcoolemie().ToString(".##") + " g/l. " + temps_Elimination_Alcool());
                 }
                 else
@@ -231,18 +232,25 @@ namespace AlcoolTest
             }
         }
 
-        private int get_qte_alcool(string alcool_name)
+        private int get_qte_alcool(string alcool_name, Alcool alc)
         {
-            if (alcool_name.Equals("Biere"))
-                return (Int32.Parse(label_biere.Content.ToString()) * 25);
-            else if (alcool_name.Equals("Vin"))
-                return (Int32.Parse(label_vin.Content.ToString()) * 12);
-            else if (alcool_name.Equals("Fort"))
-                return (Int32.Parse(label_fort.Content.ToString()) * 10);
-            else if (alcool_name.Equals("Shooter"))
-                return (Int32.Parse(label_shooter.Content.ToString()) * 3);
-            else if (alcool_name.Equals("Champagne"))
-                return (Int32.Parse(label_champagne.Content.ToString()) * 10);
+            if (!alc.get_state())
+            {
+                if (alcool_name.Equals("Biere"))
+                    return (Int32.Parse(label_biere.Content.ToString()) * 25);
+                else if (alcool_name.Equals("Vin"))
+                    return (Int32.Parse(label_vin.Content.ToString()) * 12);
+                else if (alcool_name.Equals("Fort"))
+                    return (Int32.Parse(label_fort.Content.ToString()) * 10);
+                else if (alcool_name.Equals("Shooter"))
+                    return (Int32.Parse(label_shooter.Content.ToString()) * 3);
+                else if (alcool_name.Equals("Champagne"))
+                    return (Int32.Parse(label_champagne.Content.ToString()) * 10);
+            }
+            else
+            {
+                return alc.get_qte() * (int)alc.get_taux();
+            }
             return 0;
         }
 
@@ -262,8 +270,8 @@ namespace AlcoolTest
 
         private bool isEmpty()
         {
-            if (String.IsNullOrEmpty(text_poids.Text) || String.IsNullOrEmpty(comboSexe.Text) || 
-                String.IsNullOrEmpty(premier_heure.Text) || String.IsNullOrEmpty(premier_minute.Text) || 
+            if (String.IsNullOrEmpty(text_poids.Text) || String.IsNullOrEmpty(comboSexe.Text) ||
+                String.IsNullOrEmpty(premier_heure.Text) || String.IsNullOrEmpty(premier_minute.Text) ||
                 String.IsNullOrEmpty(dernier_heure.Text) || String.IsNullOrEmpty(dernier_minute.Text))
                 return true;
             else
@@ -290,14 +298,14 @@ namespace AlcoolTest
                 alcool_a_eliminer = m_buveur.get_alcoolemie() - 0.8;
             double resultat = alcool_a_eliminer / 0.15;
             double heure = (int)resultat;
-            
+
             if ((resultat - (int)resultat) != 0)
             {
                 double minutesDouble = (resultat - (int)resultat) * 60.0;
                 minutes = minutesDouble.ToString().Substring(0, 2);
             }
             else { minutes = "00"; }
-            if (minutes[1] == ',') 
+            if (minutes[1] == ',')
             {
                 minutes = "0" + minutes[0];
             }
@@ -323,6 +331,18 @@ namespace AlcoolTest
             return temps_restant;
         }
 
+        private void Reset_nouveau_alcool_Click(object sender, RoutedEventArgs e)
+        {
+            for (int i = 0; i < m_alcool.Count(); i++)
+            {
+                if (m_alcool[i].get_state())
+                {
+                    m_alcool.Remove(m_alcool[i]);
+                }
+            }
+            list_box.Items.Clear();
+        }
+
         private void reset_information(object sender, RoutedEventArgs e)
         {
             m_buveur = null;
@@ -342,9 +362,9 @@ namespace AlcoolTest
             init_comboHeure();
             bdd_check.IsChecked = false;
             estDejaConnecter = false;
-            if(sql != null)
+            if (sql != null)
                 sql.disconnect();
-            sql = null ;
+            sql = null;
         }
 
         private void ajout_alcool_Click(object sender, RoutedEventArgs e)
@@ -352,7 +372,8 @@ namespace AlcoolTest
             ajout_alcool_window ajout = new ajout_alcool_window();
             ajout.ShowDialog();
 
-            list_box.Items.Add("Nom : " + ajout.getNom() + ", Quantité : " + ajout.getQte().ToString() + ", Taux : " + ajout.getTaux().ToString());
+            list_box.Items.Add("Nom : " + ajout.getNom() + ", Quantité : " + ajout.getQte().ToString() + "cl, Taux : " + ajout.getTaux().ToString() + "°");
+            m_alcool.Add(new Alcool(ajout.getNom(), ajout.getTaux(), ajout.getQte()));
 
         }
 
