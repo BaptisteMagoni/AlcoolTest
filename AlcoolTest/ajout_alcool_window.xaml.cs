@@ -47,6 +47,10 @@ namespace AlcoolTest
 
         private void valide_Click(object sender, RoutedEventArgs e)
         {
+            if(taux_text.Text == "" || slider_qte.Value == 0)
+            {
+
+            }
             this.Close();
         }
 
@@ -62,6 +66,11 @@ namespace AlcoolTest
             lbl_qte.Content = "";
             lbl_taux.Content = "";
             taux_text.Text = "";
+        }
+
+        private void annuler_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
 
         public string getNom()

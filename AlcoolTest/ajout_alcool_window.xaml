@@ -7,16 +7,17 @@
         mc:Ignorable="d"
         Title="Ajout d'un alcool" Height="314.699" Width="400" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Label Content="Nom de l'alcool :" HorizontalAlignment="Left" Margin="90,34,0,0" VerticalAlignment="Top"/>
-        <TextBox Name="taux_text" HorizontalAlignment="Left" Height="23" Margin="200,38,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" VerticalContentAlignment="Center" TextChanged="TextBox_TextChanged"/>
-        <Slider Name="slider_taux" HorizontalAlignment="Left" Margin="105,104,0,0" VerticalAlignment="Top" Width="205" Maximum="100" TickPlacement="BottomRight" TickFrequency="0.5" ValueChanged="slider_ValueChanged"/>
-        <Label Name="lbl_taux" Content="" HorizontalAlignment="Left" Margin="105,127,0,0" VerticalAlignment="Top" Width="205" HorizontalContentAlignment="Center"/>
-        <Label Content="Taux d'alcool" HorizontalAlignment="Left" Margin="167,73,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center"/>
-        <Label Content="Quantité" HorizontalAlignment="Left" Margin="178,160,0,0" VerticalAlignment="Top"/>
-        <Slider Name="slider_qte" HorizontalAlignment="Left" Margin="105,191,0,0" VerticalAlignment="Top" Maximum="100" TickPlacement="BottomRight" TickFrequency="1" Width="205" ValueChanged="Slider_ValueChanged_1"/>
-        <Label Name="lbl_qte" Content="" HorizontalAlignment="Left" Margin="105,215,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.014,0.188" HorizontalContentAlignment="Center" Width="205"/>
-        <Button Content="Valider" HorizontalAlignment="Left" Margin="53,241,0,0" VerticalAlignment="Top" Width="75" Name="valide" Click="valide_Click"/>
-        <Button Content="Remis à zéro" HorizontalAlignment="Left" Margin="287,241,0,0" VerticalAlignment="Top" Width="75" Click="raz_Click"/>
+        <Label Content="Nom de l'alcool :" HorizontalAlignment="Left" Margin="82,13,0,0" VerticalAlignment="Top"/>
+        <TextBox Name="taux_text" HorizontalAlignment="Left" Height="23" Margin="192,17,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" VerticalContentAlignment="Center" TextChanged="TextBox_TextChanged"/>
+        <Slider Name="slider_taux" HorizontalAlignment="Left" Margin="97,83,0,0" VerticalAlignment="Top" Width="205" Maximum="100" TickPlacement="BottomRight" TickFrequency="0.5" ValueChanged="slider_ValueChanged"/>
+        <Label Name="lbl_taux" Content="" HorizontalAlignment="Left" Margin="97,106,0,0" VerticalAlignment="Top" Width="205" HorizontalContentAlignment="Center"/>
+        <Label Content="Taux d'alcool" HorizontalAlignment="Left" Margin="159,52,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center"/>
+        <Label Content="Quantité" HorizontalAlignment="Left" Margin="170,139,0,0" VerticalAlignment="Top"/>
+        <Slider Name="slider_qte" HorizontalAlignment="Left" Margin="97,170,0,0" VerticalAlignment="Top" Maximum="100" TickPlacement="BottomRight" TickFrequency="1" Width="205" ValueChanged="Slider_ValueChanged_1"/>
+        <Label Name="lbl_qte" Content="" HorizontalAlignment="Left" Margin="97,194,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.014,0.188" HorizontalContentAlignment="Center" Width="205"/>
+        <Button Content="Valider" HorizontalAlignment="Left" Margin="159,241,0,0" VerticalAlignment="Top" Width="75" Name="valide" Click="valide_Click"/>
+        <Button Content="Remis à zéro" HorizontalAlignment="Left" Margin="32,241,0,0" VerticalAlignment="Top" Width="75" Click="raz_Click"/>
+        <Button Content="Annuler" HorizontalAlignment="Left" Margin="288,241,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.651,0.172" Name="annuler" Click="annuler_Click"/>
 
     </Grid>
 </Window>
