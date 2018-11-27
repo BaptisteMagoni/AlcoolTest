@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:AlcoolTest"
         mc:Ignorable="d"
         Background="Gray"
-        Title="AlcoolTest" Height="865.36" Width="1083.276" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="AlcoolTest" Height="865.36" Width="1083.276" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="images\logo.ico">
     <Window.Resources>
         <Style x:Key="Textbox_style" TargetType="TextBox">
             <Setter Property="VerticalContentAlignment" Value="Center"/>

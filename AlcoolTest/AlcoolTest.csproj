@@ -33,6 +33,10 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>
+    </ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="MySql.Data">
       <HintPath>..\..\mysql-connector.net\MySql.Data.dll</HintPath>
@@ -112,13 +116,15 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Resource Include="images\biere.jpg" />
     <Resource Include="images\champagne.jpg" />
     <Resource Include="images\fort.jpg" />
     <Resource Include="images\shooter.jpg" />
     <Resource Include="images\vin.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\logo.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

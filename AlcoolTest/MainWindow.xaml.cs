@@ -221,7 +221,7 @@ namespace AlcoolTest
                     if (bdd_check.IsChecked == true)
                         sql.creerNouvelleUtilisateur(m_buveur.get_alcoolemie().ToString(".##"));
 
-                    setMessage("Votre taux d'alcoolémie est de " + m_buveur.get_alcoolemie().ToString(".##") + " g/l. " + temps_Elimination_Alcool());
+                    setMessage("Votre taux d'alcoolémie est de " + m_buveur.get_alcoolemie().ToString("0.##") + " g/l. " + temps_Elimination_Alcool());
                 }
                 else
                     setMessageError("Le poids saisi est éroné");
@@ -331,18 +331,6 @@ namespace AlcoolTest
             return temps_restant;
         }
 
-        private void Reset_nouveau_alcool_Click(object sender, RoutedEventArgs e)
-        {
-            for (int i = 0; i < m_alcool.Count(); i++)
-            {
-                if (m_alcool[i].get_state())
-                {
-                    m_alcool.Remove(m_alcool[i]);
-                }
-            }
-            list_box.Items.Clear();
-        }
-
         private void reset_information(object sender, RoutedEventArgs e)
         {
             m_buveur = null;
@@ -377,11 +365,19 @@ namespace AlcoolTest
 
         }
 
-
+        private void Reset_nouveau_alcool_Click(object sender, RoutedEventArgs e)
+        {
+            for (int i = 0; i < m_alcool.Count(); i++)
+                if (m_alcool[i].get_state())
+                    m_alcool.Remove(m_alcool[i]);
+            list_box.Items.Clear();
+        }
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
+
+        
     }
 }
