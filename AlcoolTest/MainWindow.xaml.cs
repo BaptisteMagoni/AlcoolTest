@@ -57,6 +57,11 @@ namespace AlcoolTest
             reset_nouveau_alcool.IsEnabled = false;
             estCalculer = false;
             setStateResetAlcool();
+            text_poids.Text = Properties.Settings.Default.poids.ToString();
+            if (Properties.Settings.Default.sexe)
+                comboSexe.Text = "Homme";
+            else
+                comboSexe.Text = "Femme";
             try
             {
                 sql = new SqlConnection("176.132.180.249", "bdd_alcooltest", "AlcoolTest", "alcool");
@@ -122,6 +127,12 @@ namespace AlcoolTest
                 m_buveur.MAJ_alcoolemie(get_qte_alcool(alc.get_nom(), alc), alc.get_taux());
             setMessage("Votre taux d'alcoolémie est de " + m_buveur.get_alcoolemie().ToString("0.##") + " g/l. " + temps_Elimination_Alcool());
             change_background();
+        }
+
+        private void Jeune_check_Checked(object sender, RoutedEventArgs e)
+        {
+            if (estCalculer)
+                maj_alcool();
         }
 
         private void gestion_incrementation(object sender, RoutedEventArgs e)
@@ -235,7 +246,7 @@ namespace AlcoolTest
 
         private void change_background()
         {
-            if(jeune_check.IsEnabled == true)
+            if(jeune_check.IsChecked == true)
             {
                 if(m_buveur.get_alcoolemie() > 0.2)
                     wind.Background = new SolidColorBrush(Color.FromRgb(255, 77, 77));
@@ -322,9 +333,7 @@ namespace AlcoolTest
 
         private bool isEmpty()
         {
-            if (String.IsNullOrEmpty(text_poids.Text) || String.IsNullOrEmpty(comboSexe.Text) ||
-                String.IsNullOrEmpty(premier_heure.Text) || String.IsNullOrEmpty(premier_minute.Text) ||
-                String.IsNullOrEmpty(dernier_heure.Text) || String.IsNullOrEmpty(dernier_minute.Text))
+            if (String.IsNullOrEmpty(text_poids.Text) || String.IsNullOrEmpty(comboSexe.Text))
                 return true;
             else
                 return false;
@@ -387,45 +396,28 @@ namespace AlcoolTest
 
         public string temps_Elimination_Alcool()
         {
-            double alcool_a_eliminer = 0.0;
-            string minutes;
+            double limite = 0.0;
+            double temps_pour_eliminer = 0.0;
             if (jeune_check.IsChecked == true)
-                alcool_a_eliminer = m_buveur.get_alcoolemie() - 0.2;
-            else if (jeune_check.IsChecked == false)
-                alcool_a_eliminer = m_buveur.get_alcoolemie() - 0.8;
-            double resultat = alcool_a_eliminer / 0.15;
-            double heure = (int)resultat;
-
-            if ((resultat - (int)resultat) != 0)
-            {
-                double minutesDouble = (resultat - (int)resultat) * 60.0;
-                minutes = minutesDouble.ToString().Substring(0, 2);
-            }
-            else { minutes = "00"; }
-            if (minutes[1] == ',')
-            {
-                minutes = "0" + minutes[0];
-            }
-            string temps_restant;
-            if (heure == 0)
-            {
-                if (Int32.Parse(minutes) < 10)
-                {
-                    minutes = Int32.Parse(minutes).ToString();
-                }
-                temps_restant = "Il vous reste " + minutes + " min a attendre pour pouvoir conduire";
-            }
-            else if (Int32.Parse(minutes) == 0)
-            {
-                temps_restant = "Il vous reste " + heure + "h a attendre pour pouvoir conduire";
-            }
+                limite = 0.2;
+            else
+                limite = 0.5;
+            if(m_buveur.get_alcoolemie() <= limite)
+                return "Vous pouvez conduire !";
             else
             {
-                temps_restant = "Il vous reste " + heure + "h" + minutes + "min a attendre pour pouvoir conduire";
+                temps_pour_eliminer = (60 * (m_buveur.get_alcoolemie()-limite)) / 0.13;
+                temps_pour_eliminer /= 60;
+                string[] split_data = temps_pour_eliminer.ToString().Split(',');
+                string heure = split_data[0];
+                double minute = temps_pour_eliminer - Int32.Parse(heure);
+                minute *= 60;
+                if (heure == "0")
+                    return "Il vous reste " + minute.ToString("0.") + " minute avant de conduire !";
+                else if(heure != "0" && minute.ToString() != "0")
+                    return "Il vous reste " + heure + " heure " + minute.ToString("0.") + " minute avant de conduire !";
             }
-
-
-            return temps_restant;
+            return "0";
         }
 
         private void reset_information(object sender, RoutedEventArgs e)
@@ -441,7 +433,6 @@ namespace AlcoolTest
             label_fort.Content = "0";
             label_shooter.Content = "0";
             label_champagne.Content = "0";
-            text_poids.Text = "";
             setMessage("Aucune erreur pour l'instant");
             init_comboBox();
             init_comboHeure();
@@ -450,6 +441,19 @@ namespace AlcoolTest
             button_calcul.IsEnabled = true;
             reset_all_click_alcool();
             wind.Background = new SolidColorBrush(Colors.Gray);
+        }
+
+        private void Text_poids_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Properties.Settings.Default.poids = Int32.Parse(text_poids.Text);
+            Properties.Settings.Default.Save();
+        }
+
+        private void ComboSexe_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (comboSexe.Text.Equals("Homme")) Properties.Settings.Default.sexe = true;
+            else Properties.Settings.Default.sexe = false;
+            Properties.Settings.Default.Save();
         }
     }
 }

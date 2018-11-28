@@ -61,7 +61,7 @@ namespace AlcoolTest.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à VARCHAR(255).
+        ///   Recherche une chaîne localisée semblable à .
         /// </summary>
         internal static string poids {
             get {
@@ -70,7 +70,7 @@ namespace AlcoolTest.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à bool.
+        ///   Recherche une chaîne localisée semblable à .
         /// </summary>
         internal static string sexe {
             get {

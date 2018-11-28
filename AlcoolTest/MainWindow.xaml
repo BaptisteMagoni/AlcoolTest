@@ -56,10 +56,10 @@
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="198" Margin="10,10,0,0" Stroke="Black" VerticalAlignment="Top" Width="1044"/>
         <Label Content="Information utilisateur" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
 
-        <ComboBox HorizontalAlignment="Left" Margin="157,95,0,0" VerticalAlignment="Top" Width="218" Height="26" Name="comboSexe"/>
+        <ComboBox HorizontalAlignment="Left" Margin="157,95,0,0" VerticalAlignment="Top" Width="218" Height="26" Name="comboSexe" SelectionChanged="ComboSexe_SelectionChanged"/>
         <Label Content="Sexe :" HorizontalAlignment="Left" Margin="97,95,0,0" VerticalAlignment="Top"/>
 
-        <TextBox Style="{StaticResource Textbox_style}" HorizontalAlignment="Left" Margin="157,61,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Name="text_poids"/>
+        <TextBox Style="{StaticResource Textbox_style}" HorizontalAlignment="Left" Margin="157,61,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Name="text_poids" TextChanged="Text_poids_TextChanged"/>
         <Label Content="Votre poids :" HorizontalAlignment="Left" Margin="63,58,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.053,0" Height="37"/>
 
         <Label Style="{StaticResource Label_heure}" Content="Heure du premier verre ?" HorizontalAlignment="Left" Margin="679,61,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.395,0.385" Height="28"/>
@@ -71,14 +71,12 @@
         <Label Style="{StaticResource Label_heure}" Content="h" HorizontalAlignment="Left" Margin="881,103,0,0" VerticalAlignment="Top"/>
         <ComboBox Style="{StaticResource ComboSize}" HorizontalAlignment="Left" Margin="902,105,0,0" VerticalAlignment="Top" Name="dernier_minute" Height="20"/>
 
-        <CheckBox Content="Je suis jeune conducteur" HorizontalAlignment="Left" Margin="191,148,0,0" VerticalAlignment="Top" Name="jeune_check" RenderTransformOrigin="0.215,0.667"/>
+        <CheckBox Content="Je suis jeune conducteur" HorizontalAlignment="Left" Margin="191,148,0,0" VerticalAlignment="Top" Name="jeune_check" RenderTransformOrigin="0.215,0.667" Checked="Jeune_check_Checked"/>
         <CheckBox Content="J'accepte d'être dans la base de donnée" HorizontalAlignment="Left" Margin="414,174,0,0" VerticalAlignment="Top" Name="bdd_check"/>
 
         <Label Style="{StaticResource Champs_obligatoire}"  Content="* Champs obligatoire" HorizontalAlignment="Left" Margin="10,186,0,0" VerticalAlignment="Top"/>
         <Label Style="{StaticResource Champs_obligatoire}" Content="*" HorizontalAlignment="Left" Margin="375,61,0,0" VerticalAlignment="Top" Height="23"/>
         <Label Style="{StaticResource Champs_obligatoire}" Content="*" HorizontalAlignment="Left" Margin="375,95,0,0" VerticalAlignment="Top" Height="26"/>
-        <Label Style="{StaticResource Champs_obligatoire}" Content="*" HorizontalAlignment="Left" Margin="956,61,0,0" VerticalAlignment="Top" Height="21"/>
-        <Label Style="{StaticResource Champs_obligatoire}" Content="*" HorizontalAlignment="Left" Margin="956,105,0,0" VerticalAlignment="Top" Height="19"/>
 
         <Rectangle Fill="White" HorizontalAlignment="Left" Height="541" Margin="10,213,0,0" Stroke="Black" VerticalAlignment="Top" Width="1044"/>
         <Label Content="Calculer le taux d'alcoolémie" HorizontalAlignment="Left" Margin="10,213,0,0" VerticalAlignment="Top"/>
