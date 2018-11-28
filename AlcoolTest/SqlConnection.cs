@@ -32,22 +32,10 @@ namespace AlcoolTest
             this.m_password = password;
         }
 
-        public int connexion()
+        public void connexion()
         {
-            int erreur = 0;
-            try
-            {
                 this.connection = new MySqlConnection(String.Format("SERVER={0}; DATABASE={1}; UID={2}; PASSWORD={3}", m_hostname, m_database, m_user, m_password));
                 this.connection.Open();
-                erreur = 0;
-            }
-            catch(Exception e)
-            {
-                erreur = 1;
-            }
-
-            return erreur;
-            
         }
 
         public void disconnect()

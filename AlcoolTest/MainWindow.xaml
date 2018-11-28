@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:AlcoolTest"
         mc:Ignorable="d"
         Background="Gray"
+        Name="wind"
         Title="AlcoolTest" Height="865.36" Width="1083.276" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="images\logo.ico">
     <Window.Resources>
         <Style x:Key="Textbox_style" TargetType="TextBox">
@@ -113,13 +114,14 @@
         <Label Style="{StaticResource Label_nb_style}" Content="0" HorizontalAlignment="Left" Margin="301,632,0,0" VerticalAlignment="Top" Name="label_champagne" RenderTransformOrigin="1.3,0.6"/>
         <Label Style="{StaticResource Label_degres_style}" Content="10 cl à 12 °" HorizontalAlignment="Left" Margin="201,497,0,0" VerticalAlignment="Top"/>
 
-        <Button Style="{StaticResource Button_style}" Content="Calculer" HorizontalAlignment="Left" Margin="510,716,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.839,0.312" Click="calcul"/>
+        <Button Style="{StaticResource Button_style}" Name="button_calcul" Content="Calculer" HorizontalAlignment="Left" Margin="510,716,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.839,0.312" Click="calcul"/>
         <Rectangle Fill="Green" HorizontalAlignment="Left" Height="34" Margin="10,769,0,0" Stroke="Black" VerticalAlignment="Top" Width="1044" Name="Content_Message"/>
         <Label Style="{StaticResource Label_error}" Name="Messagelog" Content="Aucune erreur pour l'instant" HorizontalAlignment="Left" Margin="10,769,0,0" VerticalAlignment="Top" Width="1044" Height="34"/>
         <Button Style="{StaticResource Button_style}" Content="Remise à zéro" HorizontalAlignment="Left" Margin="20,716,0,0" VerticalAlignment="Top" Width="96" Click="reset_information"/>
-        <Button Style="{StaticResource Button_style}" Content="Voir statistique" HorizontalAlignment="Left" Margin="943,716,0,0" VerticalAlignment="Top" Width="96" Click="afficher_statistique"/>
+        <Button Style="{StaticResource Button_style}" Name="statistique" Content="Voir statistique" HorizontalAlignment="Left" Margin="943,716,0,0" VerticalAlignment="Top" Width="96" Click="afficher_statistique"/>
         <Button Style="{StaticResource Button_style}" Content="Ajouter un alcool" HorizontalAlignment="Left" Margin="943,219,0,0" VerticalAlignment="Top" Width="96" RenderTransformOrigin="0.427,-0.5" Name="ajout_alcool" Click="ajout_alcool_Click"/>
-        <ListBox Name="list_box" HorizontalAlignment="Left" Height="180" Margin="519,497,0,0" VerticalAlignment="Top" Width="338" SelectionChanged="ListBox_SelectionChanged"/>
-        <Button Content="Reset alcool ajouté" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="27" Margin="747,677,0,0" VerticalAlignment="Top" Width="110" Name="reset_nouveau_alcool" Click="Reset_nouveau_alcool_Click"/>
+        <ListBox Name="list_box" HorizontalAlignment="Left" Height="180" Margin="616,497,0,0" VerticalAlignment="Top" Width="312" RenderTransformOrigin="0.5,0.5"/>
+        <Button Content="Supprimer l'alcool séléctionné" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="26" Margin="758,677,0,0" VerticalAlignment="Top" Width="170" Name="reset_nouveau_alcool" Click="Reset_nouveau_alcool_Click"/>
+        <Label BorderBrush="Black" FontSize="10" Name="bdd_isConnect" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="881,10,0,0" VerticalAlignment="Top" Height="26" Width="173"/>
     </Grid>
 </Window>
