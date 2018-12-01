@@ -57,11 +57,6 @@ namespace AlcoolTest
             reset_nouveau_alcool.IsEnabled = false;
             estCalculer = false;
             setStateResetAlcool();
-            text_poids.Text = Properties.Settings.Default.poids.ToString();
-            if (Properties.Settings.Default.sexe)
-                comboSexe.Text = "Homme";
-            else
-                comboSexe.Text = "Femme";
             try
             {
                 sql = new SqlConnection("176.132.180.249", "bdd_alcooltest", "AlcoolTest", "alcool");
@@ -356,14 +351,17 @@ namespace AlcoolTest
         {
             ajout_alcool_window ajout = new ajout_alcool_window();
             ajout.ShowDialog();
-            m_alcool.Add(new Alcool(ajout.getNom(), ajout.getTaux(), ajout.getQte()));
-            ck = new CheckBox();
-            ck.Content = ajout.getNom() + " est a " + ajout.getTaux().ToString("0.##") + "° pour " + ajout.getQte().ToString() + "cl";
-            list_box.Items.Add(ajout.getNom() + " est a " + ajout.getTaux().ToString("0.##") + "° pour " + ajout.getQte().ToString() + "cl");
-            setStateResetAlcool();
-            if (estCalculer)
+            if (!ajout.getAction().Equals("Annuler"))
             {
-                maj_alcool();
+                m_alcool.Add(new Alcool(ajout.getNom(), ajout.getTaux(), ajout.getQte()));
+                ck = new CheckBox();
+                ck.Content = ajout.getNom() + " est a " + ajout.getTaux().ToString("0.##") + "° pour " + ajout.getQte().ToString() + "cl";
+                list_box.Items.Add(ajout.getNom() + " est a " + ajout.getTaux().ToString("0.##") + "° pour " + ajout.getQte().ToString() + "cl");
+                setStateResetAlcool();
+                if (estCalculer)
+                {
+                    maj_alcool();
+                }
             }
         }
         private void reset_all_click_alcool()
@@ -377,20 +375,25 @@ namespace AlcoolTest
         private void Reset_nouveau_alcool_Click(object sender, EventArgs e)
         {
             int index = 0;
-            if (this.list_box.SelectedIndex >= 0)
+            if (this.list_box.SelectedIndex.ToString() != null)
             {
-                index = this.list_box.SelectedIndex;
-                this.list_box.Items.RemoveAt(this.list_box.SelectedIndex);
+                if (this.list_box.SelectedIndex >= 0)
+                {
+                    index = this.list_box.SelectedIndex;
+                    this.list_box.Items.RemoveAt(this.list_box.SelectedIndex);
+                    if (index != 1)
+                        m_alcool.RemoveAt(index + 5);
+                    else
+                        reset_nouveau_alcool.IsEnabled = false;
+                    if (estCalculer)
+                    {
+                        maj_alcool();
+                    }
+                    setStateResetAlcool();
+                }
+                else
+                    setMessageError("Vous devez séléctionner l'alcool que vous voulez supprimer !");
             }
-            if (index != 1)
-                m_alcool.RemoveAt(index + 5);
-            else
-                reset_nouveau_alcool.IsEnabled = false;
-            if (estCalculer)
-            {
-                maj_alcool();
-            }
-            setStateResetAlcool();
             
         }
 
@@ -441,19 +444,12 @@ namespace AlcoolTest
             button_calcul.IsEnabled = true;
             reset_all_click_alcool();
             wind.Background = new SolidColorBrush(Colors.Gray);
+            init_button();
         }
 
-        private void Text_poids_TextChanged(object sender, TextChangedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Properties.Settings.Default.poids = Int32.Parse(text_poids.Text);
-            Properties.Settings.Default.Save();
-        }
 
-        private void ComboSexe_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (comboSexe.Text.Equals("Homme")) Properties.Settings.Default.sexe = true;
-            else Properties.Settings.Default.sexe = false;
-            Properties.Settings.Default.Save();
         }
     }
 }

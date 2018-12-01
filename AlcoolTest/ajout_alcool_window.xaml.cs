@@ -22,10 +22,12 @@ namespace AlcoolTest
         private string nom;
         private double taux;
         private int quantite;
+        private string action;
 
         public ajout_alcool_window()
         {
             InitializeComponent();
+            action = "Rien";
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -47,9 +49,9 @@ namespace AlcoolTest
 
         private void valide_Click(object sender, RoutedEventArgs e)
         {
-            if(taux_text.Text == "" || slider_qte.Value == 0)
+            if(slider_qte.Value == 0)
             {
-
+                action = "Annuler";
             }
             this.Close();
         }
@@ -70,6 +72,7 @@ namespace AlcoolTest
 
         private void annuler_Click(object sender, RoutedEventArgs e)
         {
+            action = "Annuler";
             this.Close();
         }
 
@@ -86,6 +89,11 @@ namespace AlcoolTest
         public int getQte()
         {
             return quantite;
+        }
+
+        public string getAction()
+        {
+            return action;
         }
     }
 }
