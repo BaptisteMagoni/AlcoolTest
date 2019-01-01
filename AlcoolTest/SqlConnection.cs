@@ -77,7 +77,6 @@ namespace AlcoolTest
             String sql = "SELECT taux FROM users";
             MySqlCommand cmd = new MySqlCommand(sql, this.connection);
             MySqlDataReader read = cmd.ExecuteReader();
-            List<Double> data = new List<double>();
             int nb = 0;
             while (read.Read())
                 if(read.GetDouble("taux") > 0.5)
