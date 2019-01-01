@@ -59,7 +59,7 @@ namespace AlcoolTest
             setStateResetAlcool();
             try
             {
-                sql = new SqlConnection("176.132.180.249", "bdd_alcooltest", "AlcoolTest", "alcool");
+                sql = new SqlConnection("176.132.180.249", "bdd_alcooltest", "AlcoolTest", "");
                 sql.connexion();
                 bdd_isConnect.Content = "Vous êtes connecté au serveur !";
                 bdd_isConnect.Foreground = new SolidColorBrush(Colors.White);
